@@ -1,0 +1,79 @@
+//
+//  main.cpp
+//  UVA10370
+//
+//  Created by Redwan on 8/24/16.
+//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
+//
+
+#include <stdio.h>
+#define SIZE 1000
+
+int number[SIZE], sum; 
+double average;
+double result;
+void init();
+
+double calculate(double avg, int studentCount);
+
+double calculate(double avg, int studentCount)
+{
+    double output =0.0;
+    int count=0;
+    
+    for (int i=0; i<studentCount; i++) 
+    {
+        if(number[i]>average)
+        {
+            count++;
+        }
+            
+    }
+    //printf("count: %d studentCount: %d\n",count,studentCount);
+    output = ((count+ 0.0)/(studentCount+0.0)) * 100.0;
+    //printf("output: %f", output);
+    return output;
+}
+
+
+void init()
+{
+    result=0.0;
+    sum=0;
+    average=0.0;
+    for (int i=0; i<1000; i++) 
+    {
+        number[i]=-1;
+    }
+}
+
+
+
+int main()
+{
+    int T,N;
+    char c = '%';
+    
+    scanf("%d",&T);
+    
+    for (int i=0; i<T; i++) 
+    {
+        init();
+        scanf("%d",&N);
+        
+        for (int j=0; j<N; j++) 
+        {
+            scanf("%d", &number[j]);
+            sum += number[j];
+        }
+        average = sum/N;
+        result=calculate(average,N);
+        
+        //printf("sum: %d average:%f result: %f\n", sum,average,result);
+        printf("%0.3f%c\n", result,c);
+    }
+    
+    //printf("10370");
+    return 0;
+}
+
