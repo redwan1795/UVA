@@ -8,16 +8,18 @@
 
 #include <stdio.h>
 
-long long int s[500], result;
+int s[501], result;
+
+int min;
 
 void init();
-void processCase();
-long long int abs(long long int a);
+int processCase(int number);
+int abs(int a);
 
 
-long long int abs(long long int a)
+int abs(int a)
 {
-    long long int value;
+    int value;
     
     if(a<0)
         return value= a*-1;
@@ -27,9 +29,28 @@ long long int abs(long long int a)
 
 void init()
 {
-    result =0;
-    for(int i=0; i<500;i++)
+    min=50000;
+    for(int i=0; i<501;i++)
         s[i]=0;
+}
+
+int processCase(int number)
+{
+    for (int i=0; i<number; i++) 
+    {
+        result=0;
+        for (int j=0; j<number; j++) 
+        {
+            result+= abs(s[i]-s[j]);
+            
+        }
+        if (result<min) 
+        {
+            min=result;
+        }
+    }
+    
+    return min;
 }
 
 int main()
@@ -39,8 +60,7 @@ int main()
     //freopen("output.txt", "w", stdout);
     
     int T, N;
-
-    
+        
     scanf("%d", &T);
     
     for(int i=0; i<T;i++)
@@ -49,17 +69,13 @@ int main()
         scanf("%d", &N);
         for (int j=0; j<N; j++) 
         {
-            
-            scanf("%lld", &s[j]);
-            if(j>0)
-            {
-                result += abs(s[j]-s[j-1]);
-            }
+            scanf("%d", &s[j]);
         }
-        printf("%lld\n", result);
+       
+        int minimum = processCase(N);
+        printf("%d\n",minimum);
     }
-    
-    //printf("10041");
+
     return 0;
 }
 
