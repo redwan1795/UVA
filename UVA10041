@@ -29,7 +29,7 @@ int abs(int a)
 
 void init()
 {
-    min=50000;
+    min=15000000;
     for(int i=0; i<501;i++)
         s[i]=0;
 }
