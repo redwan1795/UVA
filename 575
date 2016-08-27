@@ -1,0 +1,78 @@
+//
+//  main.cpp
+//  UVA575
+//
+//  Created by Redwan on 8/25/16.
+//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
+//
+
+
+#include <stdio.h>
+#include <math.h>
+#define SIZE 999999
+
+void reset();
+void calculate(int arrayLength);
+
+
+int input[SIZE];
+
+void calculate(int arrayLength)
+{
+    long long int sum=0;
+    for (int i=0; i<arrayLength; i++) 
+    {
+        int power = arrayLength-i;
+        //printf("%d ",arrayLength-i);
+        
+        sum += input[i]* ((pow(2.0, (power+0.0)))-1);
+    }
+    printf("%lld",sum);
+    printf("\n");
+    return;
+}
+void reset()
+{
+    for (int i=0; i<SIZE; i++) 
+    {
+        input[i]=-1;
+    }
+}
+int main()
+{
+    
+    char c;
+    int i;
+    i=0;
+    
+    while (scanf("%c",&c)!=EOF) 
+    {
+        
+        //printf("char: %d\n", c);
+        if (c==10) 
+        {
+            //i++;
+            //printf("====i:%d\n",i);
+            calculate(i);
+            i=0;
+            reset();
+        }
+       
+        
+        if (c>=48 && c<58) 
+        {
+            input[i]=(int)c - 48;
+            //printf("input[%d]: %d\n",i, input[i]);
+            if (input[0]==0) 
+            {
+                break;
+            }
+            i++;
+        }
+    }
+    
+    
+    //printf("%d",c);
+    
+    return 0;
+}
