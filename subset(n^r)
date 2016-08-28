@@ -1,0 +1,50 @@
+//
+//  main.cpp
+//  UVA136
+//
+//  Created by Redwan on 8/25/16.
+//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
+//
+
+
+#include <stdio.h>
+#include <math.h>
+
+void subset(int level);
+int input[4], output[4];
+
+void subset(int level)
+{
+    //printf("Level: %d\n", level);
+    if (level==3) 
+    {
+        for (int i=0; i<3; i++) 
+        {
+            printf("%d ", output[i]);
+        }
+        printf("\n");
+        return;
+    }
+    
+    for (int i=0; i<4; i++) 
+    {
+        output[level]=input[i];
+        subset(level+1);
+    }
+    
+}
+
+
+int main()
+{
+    // n=4 (0 2 3 5) and r=3; 4^3=64 subsets
+    input[0]=0;
+    input[1]=2;
+    input[2]=3;
+    input[3]=5;
+
+    subset(0);    
+    
+    return 0;
+}
+
