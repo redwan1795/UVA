@@ -1,0 +1,95 @@
+//
+//  main.cpp
+//  UVA374
+//
+//  Created by Redwan on 9/7/16.
+//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
+//
+
+
+#include <stdio.h>
+#define max 9999
+
+int a[max];
+int b[max];
+
+int count;
+
+void testPrint();
+void calulate(int count);
+void insertionSort();
+
+
+void testPrint()
+{
+    for(int i=0;i<count;i++)
+    {
+        //if (a[i]) 
+        {
+            printf("%d ", a[i]);
+        }
+        
+    }
+    printf("\n");
+}
+
+
+void calulate(int count)
+{
+    int result =0;
+    if ((count)%2==0) 
+    {
+        result=  (a[count/2] + a[(count/2)-1])/2;
+    }
+    else
+    {
+        result= a[(count/2)];
+    }
+    printf("%d\n", result);
+}
+
+void insertionSort(){
+    
+    int valueToInsert;
+    int holePosition;
+    int i;
+    
+    for(i = 1; i < count; i++)
+    { 
+        
+        valueToInsert = a[i];
+		
+        holePosition = i;
+		
+        while (holePosition > 0 && a[holePosition-1] > valueToInsert)
+        {
+            a[holePosition] = a[holePosition-1];
+            holePosition--;
+        }
+        
+        if(holePosition != i)
+        {
+            a[holePosition] = valueToInsert;   
+        }
+        
+		
+    }  
+}
+
+
+int main()
+{
+    int B;
+    count=0;
+    
+    while (scanf("%d", &B)!=EOF) 
+    {
+        a[count]=B;
+        count++;
+        insertionSort();
+        //testPrint();
+        calulate(count);
+    }
+
+}
+
