@@ -1,0 +1,69 @@
+//
+//  main.cpp
+//  UVA11764
+//
+//  Created by Redwan on 9/8/16.
+//  Copyright (c) 2016 __MyCompanyName__. All rights reserved.
+//
+
+#include <stdio.h>
+#define SIZE 100
+
+void processCase();
+void printCase(int index);
+void testPrint();
+
+int T, N, input[SIZE],countHigh, countLow;
+
+
+void processCase()
+{
+    for (int i=0; i<N-1; i++) 
+    {
+        if (input[i]>input[i+1]) 
+        {
+            countLow++;
+        }
+        else if (input[i]<input[i+1])
+        {
+            countHigh++;
+        }
+    }
+}
+void printCase(int index)
+{
+    printf("Case %d: %d %d\n",index+1, countHigh, countLow);
+}
+void testPrint()
+{
+    for (int i=0; i<N; i++) 
+    {
+        printf("%d ", input[i]);
+    }
+    printf("\n");
+}
+
+
+int main()
+{
+    scanf("%d",&T);
+    for (int i=0; i<T; i++) 
+    {
+        //inputCase
+        countLow=0;
+        countHigh=0;
+        scanf("%d",&N);
+        for (int j=0; j<N; j++) 
+        {
+            scanf("%d",&input[j]);
+        }
+        
+        //testPrint();
+        
+        processCase();
+        printCase(i);
+    }
+    
+    return 0;
+}
+
