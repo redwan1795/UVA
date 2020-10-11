@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+
+int partition (int A[], int first, int last)
+{
+
+    int i ,j , pivot;
+    pivot = first;
+    i = first;
+    j = last;
+    
+    while (i<j)
+    {
+        while(A[i]<=A[pivot] && i<last)
+            i++;
+        while(A[j]>A[pivot] )  
+            j--;
+            
+        if(i<j)
+        {
+            //swap
+            A[i] = A[i] + A[j];
+            A[j] = A[i] - A[j];
+            A[i] = A[i] - A[j];
+        }
+    }
+    //swap
+    A[pivot] = A[pivot] + A[j];
+    A[j] = A[pivot] - A[j];
+    A[pivot] = A[pivot] - A[j];
+
+    
+    return j;
+}
+
+
+void QSort(int A [], int first, int last)
+{
+    if (first<last)
+    {
+        int j = partition(A, first, last);
+        partition (A, first, j-1); // Left side call upto pivot j (0~j-1)
+        partition(A, j+1, last); // Right side call from (j+1 ~ last)
+    }
+}
+
+void testPrint(int A[])
+{
+    for (int i=0; i<9; i++ )
+        printf("%d ", A[i]);
+        
+    printf("\n");
+}
+
+int main()
+{
+    int A [] = {5, 13, 19, 2, 11, 6, 12, 1, 7};// 9 elements
+    //printf("Hello World");
+    
+    QSort(A, 0, 8);
+    testPrint(A);
+
+    return 0;
+}
