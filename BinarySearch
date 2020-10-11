@@ -1,0 +1,38 @@
+#include <stdio.h>
+    
+int BinrarySearch(int A[], int high , int low, int itemToSearch)
+{
+    if(low>high)
+    {
+        printf("\nItem is not found");
+        return 0;
+    }
+    int mid = (high+low)/2;
+    
+    printf (" index: %d ", mid); //for debug
+    printf ("item: %d", A[mid]); //for debug
+    
+    if(itemToSearch> A[mid])
+        return BinrarySearch(A, high, mid+1, itemToSearch);
+    else if (itemToSearch<A[mid])
+        return BinrarySearch(A,mid, low, itemToSearch );
+    else
+        return A[mid];
+        
+}
+
+
+int main()
+{
+    int A [] = {2,8, 15, 18, 20, 25, 37,100}; 
+    
+    int low = 0;
+    int high = 0;
+    
+    for (int i=0; A[i];i++)
+        high++;        
+    
+    printf ("\n%d", BinrarySearch(A, high-1, low, 100)); // Item to find is 100
+
+    return 0;
+}
